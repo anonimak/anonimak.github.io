@@ -42,7 +42,7 @@ h6 {
   opacity: 0;
   right: 15px;
   bottom: 15px;
-  z-index: 996;
+  z-index: 9999;
   background: #3078e3;
   width: 40px;
   height: 40px;
