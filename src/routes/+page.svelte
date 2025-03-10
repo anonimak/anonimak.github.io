@@ -1,2 +1,14 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+  import ExperienceSection from "$lib/components/layout/ExperienceSection.svelte";
+  import Footer from "$lib/components/layout/Footer.svelte";
+  import HeroSection from "$lib/components/layout/HeroSection.svelte";
+  import ProjectSection from "$lib/components/layout/ProjectSection.svelte";
+</script>
+
+<HeroSection />
+<div class="divider"></div>
+<ExperienceSection />
+<div class="divider"></div>
+<ProjectSection />
+<div class="divider"></div>
+<Footer />
