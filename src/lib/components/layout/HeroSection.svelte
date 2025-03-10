@@ -16,7 +16,7 @@
         challenges in the ever-evolving tech landscape. Let's connect and
         explore opportunities to collaborate on exciting projects!
       </p>
-      <button class="btn btn-primary">Hire Me</button>
+      <!-- <button class="btn btn-primary">Hire Me</button> -->
 
       <div class="py-10">
         <h2 class="text-primary mb-4">Skills</h2>
