@@ -24,7 +24,14 @@
           {#each skills as item, index}
             <div class="tooltip" data-tip={item.name}>
               <div class="badge badge-soft badge-primary py-6">
-                <Icon icon={item.icon} class="text-gray-400" height={32} />
+                <Icon
+                  icon={item.icon}
+                  class="text-gray-400 print:hidden"
+                  height={32}
+                />
+                <span class="text-gray-400 text-lg hidden print:inline"
+                  >{item.name}</span
+                >
               </div>
             </div>
           {/each}
