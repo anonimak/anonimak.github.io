@@ -3,7 +3,7 @@ export const professionalProjects = [
   {
     title: "Dashboard Panel (OPIS)",
     company: "PT. Sinarmas Hana Finance",
-    role: "Software Engineer",
+    role: "Full-Stack Developer",
     contributions: [
       "Developed a seamless user session system, allowing access to sub-applications without reauthentication.",
       "Ensured secure and efficient authentication flows to enhance user experience.",
@@ -14,7 +14,7 @@ export const professionalProjects = [
   {
     title: "HRIS (Human Resource Information System)",
     company: "PT. Sinarmas Hana Finance",
-    role: "Software Engineer",
+    role: "Full-Stack Developer",
     contributions: [
       "Designed and enhanced modules for overtime, leave, attendance, warning letters, and business trips.",
       "Currently developing payroll integration to automate salary calculations and payments.",
@@ -26,7 +26,7 @@ export const professionalProjects = [
   {
     title: "E-Memo (E-Approval System)",
     company: "PT. Sinarmas Hana Finance",
-    role: "Software Engineer",
+    role: "Full-Stack Developer",
     contributions: [
       "Built an approval workflow system to streamline internal document processing.",
       "Implemented role-based access control (RBAC) to ensure secure approvals.",
@@ -38,7 +38,7 @@ export const professionalProjects = [
   {
     title: "E-Auction (Online Vehicle Auction System)",
     company: "PT. Sinarmas Hana Finance",
-    role: "Software Engineer",
+    role: "Full-Stack Developer",
     contributions: [
       "Developed an online vehicle auction platform with real-time bidding features.",
       "Implemented auction scheduling and bid tracking.",
@@ -50,7 +50,7 @@ export const professionalProjects = [
   {
     title: "E-Regulation",
     company: "PT. Sinarmas Hana Finance",
-    role: "Software Engineer (Advisory)",
+    role: "Full-Stack Developer (Advisory)",
     contributions: [
       "Provided input on workflow design and technology selection.",
       "Assisted in defining system architecture and implementation approach.",

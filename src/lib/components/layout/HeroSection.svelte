@@ -8,10 +8,10 @@
     <div>
       <h2 class="text-primary">Hello</h2>
       <h1 class="text-5xl font-light text-gray-200">
-        I'm Jonatan, Software Engineer
+        I'm Jonatan, Full-Stack Developer
       </h1>
       <p class="py-6 text-gray-400">
-        Experienced Software Engineer. Skilled in JavaScript, PHP, HTML, CSS,
+        Experienced Full-Stack Developer. Skilled in JavaScript, PHP, HTML, CSS,
         and various frameworks. Always eager to learn and adapt to new
         challenges in the ever-evolving tech landscape. Let's connect and
         explore opportunities to collaborate on exciting projects!
