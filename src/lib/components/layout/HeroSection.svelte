@@ -75,7 +75,7 @@
         <!-- CTA -->
         <div class="hero-item flex flex-wrap items-center gap-3 pt-2">
           <a
-            href="#projects"
+            href="#portfolio"
             class="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-xl px-6 py-3 text-sm font-semibold text-black transition-all duration-300 hover:shadow-[0_0_30px_rgba(122,167,255,0.3)] hover:-translate-y-0.5"
             style="background: linear-gradient(110deg, #7aa7ff, #64e7d5);"
           >
