@@ -109,7 +109,7 @@ export const sideProjects = [
       "Built the mobile application (React Native) for volunteer role management under the Social Service Office.",
     ],
     link: "",
-    image: "/images/lapormas.jpg",
+    image: "/images/projects/mediatanggamus.png",
   },
   {
     title: "Website & Landing Pages",
@@ -138,8 +138,7 @@ export const skills = [
   { name: "Laravel", icon: "cib:laravel" },
   { name: "CodeIgniter", icon: "cib:codeigniter" },
   { name: "Strapi", icon: "cib:strapi" },
-  { name: "MySQL", icon: "cib:mysql" },
-  { name: "MariaDB", icon: "cib:mysql" },
+  { name: "MySQL/MariaDB", icon: "cib:mysql" },
   { name: "Docker", icon: "cib:docker" },
   { name: "Git", icon: "cib:git" },
   { name: "CI/CD", icon: "cib:jenkins" }, // Using Jenkins as a representation for CI/CD
