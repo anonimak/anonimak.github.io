@@ -39,7 +39,7 @@
           class="h-px w-8 rounded-full bg-gradient-to-r from-primary to-secondary opacity-60"
         ></span>
         <p
-          class="text-[10px] font-bold uppercase tracking-[0.5em] text-base-content/30 print:hidden"
+          class="text-[10px] font-bold uppercase tracking-[0.5em] text-base-content/60 print:hidden"
         >
           Portfolio
         </p>
@@ -59,7 +59,7 @@
           ></span>
         </span>
       </h2>
-      <p class="max-w-sm text-sm leading-7 text-base-content/30 print:hidden">
+      <p class="max-w-sm text-sm leading-7 text-base-content/60 print:hidden">
         Real-world work across enterprise systems and personal builds.
       </p>
     </div>
@@ -72,7 +72,7 @@
           class="group relative inline-flex items-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-semibold transition-all duration-300 {activeTab ===
           tab.id
             ? 'border-primary/25 bg-primary/8 text-primary'
-            : 'border-white/6 bg-white/2 text-base-content/35 hover:border-white/12 hover:bg-white/4 hover:text-base-content/60'}"
+            : 'border-white/6 bg-white/2 text-base-content/60 hover:border-white/12 hover:bg-white/4 hover:text-base-content/60'}"
           style={activeTab === tab.id
             ? "box-shadow: 0 0 20px rgba(122,167,255,0.1);"
             : ""}
@@ -90,7 +90,7 @@
             class="ml-1 rounded-md border px-2 py-0.5 text-[10px] font-bold transition-colors duration-300 {activeTab ===
             tab.id
               ? 'border-primary/20 bg-primary/8 text-primary/60'
-              : 'border-white/8 bg-white/3 text-base-content/25'}"
+              : 'border-white/8 bg-white/3 text-base-content/60'}"
           >
             {tab.data.length}
           </span>
@@ -144,7 +144,7 @@
             {val}
           </span>
           <span
-            class="text-[10px] uppercase tracking-widest text-base-content/25"
+            class="text-[10px] uppercase tracking-widest text-base-content/60"
             >{label}</span
           >
         </div>

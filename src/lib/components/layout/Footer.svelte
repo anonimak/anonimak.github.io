@@ -60,7 +60,7 @@
             class="h-px w-8 rounded-full bg-gradient-to-r from-transparent to-primary opacity-40"
           ></span>
           <p
-            class="text-[10px] font-bold uppercase tracking-[0.5em] text-base-content/30"
+            class="text-[10px] font-bold uppercase tracking-[0.5em] text-base-content/60"
           >
             Get In Touch
           </p>
@@ -82,7 +82,7 @@
             </span>
           </h2>
           <p
-            class="mx-auto max-w-md text-sm leading-7 text-base-content/30 md:text-base"
+            class="mx-auto max-w-md text-sm leading-7 text-base-content/60 md:text-base"
           >
             Open to new opportunities, collaborations, and interesting
             conversations. Whether it's a project proposal or just a hello —
@@ -98,7 +98,7 @@
               target="_blank"
               rel="noopener noreferrer"
               aria-label={s.label}
-              class="group flex items-center gap-2.5 rounded-xl border border-white/6 bg-white/2 px-4 py-2.5 text-sm font-semibold text-base-content/35 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:bg-primary/8 hover:text-primary"
+              class="group flex items-center gap-2.5 rounded-xl border border-white/6 bg-white/2 px-4 py-2.5 text-sm font-semibold text-base-content/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:bg-primary/8 hover:text-primary"
               style="transition: box-shadow 0.3s;"
               onmouseenter={(e) =>
                 (e.currentTarget.style.boxShadow =
@@ -126,14 +126,14 @@
       </span>
 
       <!-- Copyright -->
-      <p class="text-[11px] tracking-wider text-base-content/20">
+      <p class="text-[11px] tracking-wider text-base-content/50">
         © {new Date().getFullYear()} Jonatan Teofilus · All rights reserved
       </p>
 
       <!-- Back to top -->
       <a
         href="#hero"
-        class="group flex items-center gap-2 rounded-xl border border-white/6 bg-white/2 px-3 py-2 text-[11px] font-semibold uppercase tracking-widest text-base-content/25 transition-all duration-300 hover:border-primary/20 hover:text-primary/60 hover:-translate-y-0.5"
+        class="group flex items-center gap-2 rounded-xl border border-white/6 bg-white/2 px-3 py-2 text-[11px] font-semibold uppercase tracking-widest text-base-content/60 transition-all duration-300 hover:border-primary/20 hover:text-primary/60 hover:-translate-y-0.5"
       >
         <Icon
           icon="lucide:arrow-up"

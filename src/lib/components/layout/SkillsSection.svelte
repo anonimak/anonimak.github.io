@@ -21,7 +21,7 @@
             class="h-px w-8 rounded-full bg-gradient-to-r from-primary to-secondary opacity-60"
           ></span>
           <p
-            class="text-[10px] font-bold uppercase tracking-[0.5em] text-base-content/30"
+            class="text-[10px] font-bold uppercase tracking-[0.5em] text-base-content/60"
           >
             Skills & Tools
           </p>
@@ -70,10 +70,10 @@
 
           <Icon
             icon={item.icon}
-            class="relative z-10 size-7 text-base-content/40 transition-all duration-300 group-hover:text-primary/80 group-hover:scale-110 print:hidden sm:size-9"
+            class="relative z-10 size-7 text-base-content/60 transition-all duration-300 group-hover:text-primary/80 group-hover:scale-110 print:hidden sm:size-9"
           />
           <span
-            class="relative z-10 text-center text-[10px] font-medium leading-tight text-base-content/30 transition-colors duration-300 group-hover:text-base-content/60 sm:text-xs"
+            class="relative z-10 text-center text-[10px] font-medium leading-tight text-base-content/60 transition-colors duration-300 group-hover:text-base-content/60 sm:text-xs"
           >
             {item.name}
           </span>
@@ -90,19 +90,19 @@
         >
           {skills.length}
         </span>
-        <span class="text-[10px] uppercase tracking-widest text-base-content/25"
+        <span class="text-[10px] uppercase tracking-widest text-base-content/60"
           >tools</span
         >
       </div>
       <div class="h-4 w-px bg-white/8"></div>
-      <p class="text-xs leading-relaxed text-base-content/25">
+      <p class="text-xs leading-relaxed text-base-content/60">
         Across frontend, backend, infrastructure & design tooling.
       </p>
       <div class="ml-auto hidden items-center gap-2 sm:flex">
         <span
           class="inline-block h-2 w-2 rounded-full bg-emerald-400/60 shadow-[0_0_6px_2px_rgba(52,211,153,0.35)]"
         ></span>
-        <span class="text-xs text-base-content/25">Actively used</span>
+        <span class="text-xs text-base-content/60">Actively used</span>
       </div>
     </div>
   </div>
