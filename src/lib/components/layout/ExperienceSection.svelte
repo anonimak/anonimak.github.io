@@ -1,5 +1,7 @@
 <script>
+  import { onMount } from "svelte";
   import Icon from "@iconify/svelte";
+  import gsap from "gsap";
 
   const experiences = [
     {
@@ -35,9 +37,88 @@
         "Associate's Degree in Information Management, focusing on programming, database management, system analysis, and IT project management.",
     },
   ];
+
+  let sectionEl;
+
+  onMount(() => {
+    const q = gsap.utils.selector(sectionEl);
+
+    gsap.set(q('[data-anim="exp-header"] > *'), { opacity: 0, x: 30 });
+    gsap.set(q(".exp-item"), { opacity: 0, x: 24 });
+    gsap.set(q('[data-anim="exp-stat"]'), { opacity: 0, y: 14 });
+
+    let visible = false;
+
+    const animateIn = () => {
+      visible = true;
+      gsap.to(q('[data-anim="exp-header"] > *'), {
+        opacity: 1,
+        x: 0,
+        duration: 0.75,
+        stagger: 0.1,
+        ease: "power3.out",
+        overwrite: true,
+      });
+      gsap.to(q(".exp-item"), {
+        opacity: 1,
+        x: 0,
+        duration: 0.65,
+        stagger: 0.18,
+        ease: "power2.out",
+        overwrite: true,
+      });
+      gsap.to(q('[data-anim="exp-stat"]'), {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: true,
+      });
+    };
+
+    const animateOut = () => {
+      visible = false;
+      gsap.to(q('[data-anim="exp-header"] > *'), {
+        opacity: 0,
+        x: 30,
+        duration: 0.4,
+        stagger: { amount: 0.2, from: "end" },
+        ease: "power2.in",
+        overwrite: true,
+      });
+      gsap.to(q(".exp-item"), {
+        opacity: 0,
+        x: 24,
+        duration: 0.4,
+        stagger: { amount: 0.4, from: "end" },
+        ease: "power2.in",
+        overwrite: true,
+      });
+      gsap.to(q('[data-anim="exp-stat"]'), {
+        opacity: 0,
+        y: 14,
+        duration: 0.3,
+        ease: "power2.in",
+        overwrite: true,
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !visible) animateIn();
+          else if (!entry.isIntersecting && visible) animateOut();
+        });
+      },
+      { threshold: 0.12 },
+    );
+
+    observer.observe(sectionEl);
+    return () => observer.disconnect();
+  });
 </script>
 
-<section class="relative py-24 md:py-36" id="experience">
+<section class="relative py-24 md:py-36" id="experience" bind:this={sectionEl}>
   <!-- Ambient cahaya -->
   <div
     class="pointer-events-none absolute inset-0 z-0"
@@ -48,7 +129,7 @@
     <!-- Dorong semua konten ke kanan dengan margin-left 50% di desktop -->
     <div class="md:ml-[50%]">
       <!-- Header -->
-      <div class="mb-20 space-y-4">
+      <div class="mb-20 space-y-4" data-anim="exp-header">
         <div class="flex items-center gap-3">
           <span
             class="h-px w-8 rounded-full bg-gradient-to-r from-primary to-secondary opacity-60"
@@ -89,11 +170,7 @@
 
         <div class="space-y-0">
           {#each experiences as item, i}
-            <div
-              class="relative flex gap-6 pb-12"
-              style="animation: slideUp 0.7s cubic-bezier(0.22,1,0.36,1) {i *
-                0.12}s both;"
-            >
+            <div class="exp-item relative flex gap-6 pb-12">
               <!-- Node -->
               <div class="relative z-10 flex-shrink-0">
                 <div class="relative flex h-8 w-8 items-center justify-center">
@@ -168,7 +245,10 @@
       </div>
 
       <!-- Stat bar -->
-      <div class="mt-4 flex items-center gap-6 border-t border-white/5 pt-6">
+      <div
+        class="mt-4 flex items-center gap-6 border-t border-white/5 pt-6"
+        data-anim="exp-stat"
+      >
         {#each [["8+", "years total"], ["2", "companies"], ["1", "degree"]] as [val, label], i}
           {#if i > 0}
             <div class="h-4 w-px bg-white/8"></div>
@@ -189,16 +269,3 @@
     </div>
   </div>
 </section>
-
-<style>
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

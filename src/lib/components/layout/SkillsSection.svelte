@@ -1,9 +1,108 @@
 <script>
+  import { onMount } from "svelte";
   import Icon from "@iconify/svelte";
   import { skills } from "$lib/data/data.js";
+  import gsap from "gsap";
+
+  let sectionEl;
+
+  onMount(() => {
+    const q = gsap.utils.selector(sectionEl);
+
+    // Set initial hidden state
+    gsap.set(q('[data-anim="skills-header"] > *'), { opacity: 0, y: 36 });
+    gsap.set(q('[data-anim="skills-desc"]'), { opacity: 0, y: 20 });
+    gsap.set(q(".skill-card"), { opacity: 0, y: 22, scale: 0.94 });
+    gsap.set(q('[data-anim="skills-stat"]'), { opacity: 0, y: 14 });
+
+    let visible = false;
+
+    const animateIn = () => {
+      visible = true;
+      gsap.to(q('[data-anim="skills-header"] > *'), {
+        opacity: 1,
+        y: 0,
+        duration: 0.75,
+        stagger: 0.1,
+        ease: "power3.out",
+        overwrite: true,
+      });
+      gsap.to(q('[data-anim="skills-desc"]'), {
+        opacity: 1,
+        y: 0,
+        duration: 0.65,
+        ease: "power2.out",
+        overwrite: true,
+      });
+      gsap.to(q(".skill-card"), {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.55,
+        stagger: { amount: 0.9, from: "start" },
+        ease: "power2.out",
+        overwrite: true,
+      });
+      gsap.to(q('[data-anim="skills-stat"]'), {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: true,
+      });
+    };
+
+    const animateOut = () => {
+      visible = false;
+      gsap.to(q('[data-anim="skills-header"] > *'), {
+        opacity: 0,
+        y: 36,
+        duration: 0.4,
+        stagger: { amount: 0.25, from: "end" },
+        ease: "power2.in",
+        overwrite: true,
+      });
+      gsap.to(q('[data-anim="skills-desc"]'), {
+        opacity: 0,
+        y: 20,
+        duration: 0.35,
+        ease: "power2.in",
+        overwrite: true,
+      });
+      gsap.to(q(".skill-card"), {
+        opacity: 0,
+        y: 22,
+        scale: 0.94,
+        duration: 0.4,
+        stagger: { amount: 0.5, from: "end" },
+        ease: "power2.in",
+        overwrite: true,
+      });
+      gsap.to(q('[data-anim="skills-stat"]'), {
+        opacity: 0,
+        y: 14,
+        duration: 0.3,
+        ease: "power2.in",
+        overwrite: true,
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !visible) animateIn();
+          else if (!entry.isIntersecting && visible) animateOut();
+        });
+      },
+      { threshold: 0.12 },
+    );
+
+    observer.observe(sectionEl);
+    return () => observer.disconnect();
+  });
 </script>
 
-<section class="relative py-24 md:py-36" id="skills">
+<section class="relative py-24 md:py-36" id="skills" bind:this={sectionEl}>
   <!-- Ambient dari bawah — blackhole section ini sudah mendekat ke orbit ring -->
   <div
     class="pointer-events-none absolute inset-0 z-0"
@@ -15,7 +114,7 @@
     <div
       class="mb-16 grid grid-cols-1 gap-6 md:grid-cols-[1fr_auto] md:items-end"
     >
-      <div class="space-y-4">
+      <div class="space-y-4" data-anim="skills-header">
         <div class="flex items-center gap-3">
           <span
             class="h-px w-8 rounded-full bg-gradient-to-r from-primary to-secondary opacity-60"
@@ -43,7 +142,10 @@
           &nbsp;for modern work.
         </h2>
       </div>
-      <p class="max-w-xs text-sm leading-7 text-base-content/30 md:text-right">
+      <p
+        class="max-w-xs text-sm leading-7 text-base-content/30 md:text-right"
+        data-anim="skills-desc"
+      >
         Frontend to backend, design to delivery — covering the full product
         lifecycle.
       </p>
@@ -54,7 +156,6 @@
       {#each skills as item, i}
         <div
           class="skill-card group relative flex flex-col items-center justify-center gap-2 rounded-xl border border-white/5 bg-white/2 p-4 backdrop-blur-sm cursor-default transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:bg-primary/5 sm:p-5"
-          style="animation-delay: {i * 35}ms"
           title={item.name}
         >
           <!-- Inner glow on hover -->
@@ -83,7 +184,10 @@
     </div>
 
     <!-- Stat bar -->
-    <div class="mt-10 flex items-center gap-6 border-t border-white/5 pt-6">
+    <div
+      class="mt-10 flex items-center gap-6 border-t border-white/5 pt-6"
+      data-anim="skills-stat"
+    >
       <div class="flex items-baseline gap-1.5">
         <span
           class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-2xl font-black text-transparent"
@@ -107,20 +211,3 @@
     </div>
   </div>
 </section>
-
-<style>
-  .skill-card {
-    animation: fadeSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  @keyframes fadeSlideUp {
-    from {
-      opacity: 0;
-      transform: translateY(16px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

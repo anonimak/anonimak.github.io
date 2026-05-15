@@ -1,7 +1,9 @@
 <script>
+  import { onMount, tick } from "svelte";
   import ProjectCard from "$lib/components/features/ProjectCard.svelte";
   import { professionalProjects, sideProjects } from "$lib/data/data.js";
   import Icon from "@iconify/svelte";
+  import gsap from "gsap";
 
   const tabs = [
     {
@@ -22,9 +24,131 @@
   let activeProjects = $derived(
     tabs.find((t) => t.id === activeTab)?.data ?? [],
   );
+
+  let sectionEl;
+  let projectListEl;
+  let mounted = false;
+  let isFirstEffect = true;
+
+  onMount(() => {
+    const q = gsap.utils.selector(sectionEl);
+
+    gsap.set(q('[data-anim="proj-header"] > *'), { opacity: 0, y: 36 });
+    gsap.set(q('[data-anim="proj-tabs"]'), { opacity: 0, y: 18 });
+    gsap.set(q(".proj-card"), { opacity: 0, y: 28 });
+    gsap.set(q('[data-anim="proj-stat"]'), { opacity: 0, y: 14 });
+
+    let visible = false;
+
+    const animateIn = () => {
+      visible = true;
+      gsap.to(q('[data-anim="proj-header"] > *'), {
+        opacity: 1,
+        y: 0,
+        duration: 0.75,
+        stagger: 0.12,
+        ease: "power3.out",
+        overwrite: true,
+      });
+      gsap.to(q('[data-anim="proj-tabs"]'), {
+        opacity: 1,
+        y: 0,
+        duration: 0.55,
+        ease: "power2.out",
+        overwrite: true,
+      });
+      gsap.to(q(".proj-card"), {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
+        overwrite: true,
+      });
+      gsap.to(q('[data-anim="proj-stat"]'), {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: true,
+      });
+    };
+
+    const animateOut = () => {
+      visible = false;
+      gsap.to(q('[data-anim="proj-header"] > *'), {
+        opacity: 0,
+        y: 36,
+        duration: 0.4,
+        stagger: { amount: 0.2, from: "end" },
+        ease: "power2.in",
+        overwrite: true,
+      });
+      gsap.to(q('[data-anim="proj-tabs"]'), {
+        opacity: 0,
+        y: 18,
+        duration: 0.35,
+        ease: "power2.in",
+        overwrite: true,
+      });
+      gsap.to(q(".proj-card"), {
+        opacity: 0,
+        y: 28,
+        duration: 0.4,
+        stagger: { amount: 0.4, from: "end" },
+        ease: "power2.in",
+        overwrite: true,
+      });
+      gsap.to(q('[data-anim="proj-stat"]'), {
+        opacity: 0,
+        y: 14,
+        duration: 0.3,
+        ease: "power2.in",
+        overwrite: true,
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !visible) animateIn();
+          else if (!entry.isIntersecting && visible) animateOut();
+        });
+      },
+      { threshold: 0.12 },
+    );
+
+    observer.observe(sectionEl);
+    mounted = true;
+    return () => {
+      observer.disconnect();
+      mounted = false;
+    };
+  });
+
+  $effect(() => {
+    const _tab = activeTab;
+    if (!mounted || !projectListEl || isFirstEffect) {
+      isFirstEffect = false;
+      return;
+    }
+    tick().then(() => {
+      gsap.from(projectListEl.querySelectorAll(".proj-card"), {
+        y: 22,
+        opacity: 0,
+        duration: 0.45,
+        stagger: 0.08,
+        ease: "power2.out",
+      });
+    });
+  });
 </script>
 
-<section class="relative py-24 md:py-36 break-before-page" id="portfolio">
+<section
+  class="relative py-24 md:py-36 break-before-page"
+  id="portfolio"
+  bind:this={sectionEl}
+>
   <!-- Ambient dari atas — blackhole di section ini sudah zoom in, cahaya lebih intens -->
   <div
     class="pointer-events-none absolute inset-0 z-0"
@@ -33,7 +157,7 @@
 
   <div class="container relative z-10 mx-auto max-w-screen-xl px-4">
     <!-- Header -->
-    <div class="mb-16 space-y-4">
+    <div class="mb-16 space-y-4" data-anim="proj-header">
       <div class="flex items-center gap-3">
         <span
           class="h-px w-8 rounded-full bg-gradient-to-r from-primary to-secondary opacity-60"
@@ -65,7 +189,10 @@
     </div>
 
     <!-- Tab switcher -->
-    <div class="mb-8 flex items-center gap-2 print:hidden">
+    <div
+      class="mb-8 flex items-center gap-2 print:hidden"
+      data-anim="proj-tabs"
+    >
       {#each tabs as tab}
         <button
           onclick={() => (activeTab = tab.id)}
@@ -99,7 +226,7 @@
     </div>
 
     <!-- Project list -->
-    <div class="space-y-4 print:space-y-0">
+    <div class="space-y-4 print:space-y-0" bind:this={projectListEl}>
       {#each activeProjects as item, index (item.title)}
         <h2 class="hidden text-primary print:block print:break-before-page">
           Portfolio
@@ -112,10 +239,7 @@
             : "Side Projects"}
         </h1>
 
-        <div
-          style="animation: slideUp 0.6s cubic-bezier(0.22,1,0.36,1) {index *
-            80}ms both;"
-        >
+        <div class="proj-card">
           <ProjectCard
             no={index + 1}
             title={item.title}
@@ -132,6 +256,7 @@
     <!-- Stat bar -->
     <div
       class="mt-10 flex items-center gap-6 border-t border-white/5 pt-6 print:hidden"
+      data-anim="proj-stat"
     >
       {#each [[professionalProjects.length + sideProjects.length, "total projects"], [professionalProjects.length, "professional"], [sideProjects.length, "side projects"]] as [val, label], i}
         {#if i > 0}
@@ -152,16 +277,3 @@
     </div>
   </div>
 </section>
-
-<style>
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

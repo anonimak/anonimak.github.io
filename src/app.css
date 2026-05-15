@@ -30,35 +30,8 @@ html {
 body {
   min-height: 100vh;
   font-family: var(--font-body);
-  background:
-    /* Aksen biru blackhole kiri atas */
-    radial-gradient(
-      ellipse 60% 40% at 15% 0%,
-      rgba(122, 167, 255, 0.08),
-      transparent 70%
-    ),
-    /* Aksen cyan blackhole kanan atas */
-    radial-gradient(
-        ellipse 50% 35% at 85% 0%,
-        rgba(100, 231, 213, 0.07),
-        transparent 70%
-      ),
-    /* Base gelap */
-    linear-gradient(180deg, #060c17 0%, #080e1a 40%, #070c18 100%);
+  background: #080e1a;
   color: var(--color-base-content);
-}
-
-/* Grid tipis hanya di atas — seperti cakrawala event horizon */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(122, 167, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(122, 167, 255, 0.025) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 60%);
 }
 
 h1,
