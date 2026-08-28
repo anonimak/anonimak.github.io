@@ -1,26 +1,16 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* Each design theme (see src/lib/themes/*) owns its own full color system,
+   typography and background — this file only holds truly global resets that
+   every theme should inherit. */
+
 :root {
-  color-scheme: dark;
-  --color-base-100: #080e1a;
-  --color-base-200: #0c1424;
-  --color-base-300: #111d32;
-  --color-base-content: #dde8ff;
-  --color-primary: #7aa7ff; /* biru blackhole */
-  --color-primary-content: #03080f;
-  --color-secondary: #64e7d5; /* cyan blackhole */
-  --color-secondary-content: #03080f;
-  --color-accent: #a78bfa;
-  --color-accent-content: #03080f;
-  --color-neutral: #1a2a42;
-  --color-neutral-content: #dde8ff;
-  --color-info: #7aa7ff;
-  --color-success: #64e7d5;
-  --color-warning: #f59e0b;
-  --color-error: #fb7185;
-  --font-body: "Manrope", system-ui, sans-serif;
-  --font-display: "Space Grotesk", system-ui, sans-serif;
+  color-scheme: light dark;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -29,27 +19,15 @@ html {
 
 body {
   min-height: 100vh;
-  font-family: var(--font-body);
-  background: #080e1a;
-  color: var(--color-base-content);
+  margin: 0;
+  font-family: "Manrope", system-ui, sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-display);
-  letter-spacing: -0.04em;
+img {
+  max-width: 100%;
+  display: block;
 }
 
-::selection {
-  background: rgba(122, 167, 255, 0.2);
-  color: var(--color-base-content);
-}
-
-main {
-  position: relative;
-  z-index: 1;
+button {
+  font-family: inherit;
 }

@@ -1,3 +1,131 @@
+// Central profile / identity data — shared by every theme so content
+// stays identical no matter which design style is rendered.
+export const profile = {
+  name: "Jonatan Teofilus",
+  initials: "JT",
+  role: "Full-Stack Developer",
+  location: "Jakarta, ID",
+  availability: "Available for work",
+  headline: {
+    prefix: "Building",
+    highlight: "products",
+    suffix: "that ship.",
+  },
+  tagline:
+    "Full-stack engineer crafting clean systems and modern web experiences — from architecture to deployment.",
+  motto: "Clean systems · Product delivery · Modern web",
+  stack: "JS · PHP · Vue",
+  focus: "Web · DevOps",
+  heroStats: [
+    { value: "8+", label: "Years exp." },
+    { value: "10+", label: "Projects" },
+    { value: "∞", label: "Coffee cups" },
+  ],
+  experienceStats: [
+    { value: "8+", label: "years total" },
+    { value: "3", label: "companies" },
+    { value: "2", label: "degrees" },
+  ],
+  contactHeadline: {
+    prefix: "Let's build",
+    highlight: "something great.",
+  },
+  contactBody:
+    "Open to new opportunities, collaborations, and interesting conversations. Whether it's a project proposal or just a hello — reach out.",
+  nav: [
+    { href: "#hero", label: "Home" },
+    { href: "#skills", label: "Skills" },
+    { href: "#experience", label: "Experience" },
+    { href: "#portfolio", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+  ],
+  socials: [
+    {
+      href: "https://github.com/anonimak",
+      icon: "entypo-social:github",
+      label: "GitHub",
+    },
+    {
+      href: "https://www.linkedin.com/in/jonatanteofilus5ba43a182",
+      icon: "entypo-social:linkedin",
+      label: "LinkedIn",
+    },
+    {
+      href: "https://instagram.com/jonatan_teofilus",
+      icon: "entypo-social:instagram",
+      label: "Instagram",
+    },
+  ],
+};
+
+// Experience & education timeline
+export const experiences = [
+  {
+    id: "marugame",
+    period: "2025 — Present",
+    company: "Marugame Udon Indonesia",
+    type: "work",
+    tags: ["Laravel", "Livewire", "Power BI", "DevOps"],
+    description:
+      "Analyzed business processes and translated them into scalable web applications utilizing the TALL stack. Managed the end-to-end deployment lifecycle and code versioning via GitLab. Architected seamless integrations across multiple internal systems and developed comprehensive data analytics solutions—including sales tracking and reporting dashboards—using both custom in-house tools and Microsoft Power BI.",
+  },
+  {
+    id: "nusa-mandiri",
+    period: "2025 — 2026",
+    company: "Nusa Mandiri University",
+    type: "edu",
+    tags: ["S1", "Information System"],
+    description:
+      "Bachelor's Degree (S1) in Information Systems, completed part-time alongside full-time work — building on prior IT foundations with deeper coursework in software engineering, database design, systems analysis, and business process management.",
+    // Overlaps with the "marugame" entry — rendered as a small attached
+    // branch card next to that node instead of its own timeline slot.
+    concurrentWith: "marugame",
+  },
+  {
+    id: "sinarmas",
+    period: "2020 — 2025",
+    company: "Sinarmas Hana Finance",
+    type: "work",
+    tags: ["Vue", "PHP", "DevOps"],
+    description:
+      "Developed and maintained scalable software systems, integrated new technologies, led HRIS, e-Approval, and e-Auction projects, collaborated with stakeholders, participated in agile processes, implemented version control, optimized databases, and coordinated deployments.",
+  },
+  {
+    id: "sysware",
+    period: "2017 — 2020",
+    company: "PT Sysware Indonesia",
+    type: "work",
+    tags: ["PHP", "JavaScript", "Swift"],
+    description:
+      "Specialized in backend development with PHP frameworks, frontend with JavaScript, and mobile development with Swift, delivering custom software solutions tailored to business needs.",
+  },
+  {
+    id: "polinela",
+    period: "2013 — 2016",
+    company: "State Polytechnic of Lampung",
+    type: "edu",
+    tags: ["D3", "Information Management"],
+    description:
+      "Associate's Degree in Information Management, focusing on programming, database management, system analysis, and IT project management.",
+  },
+];
+
+// Groups `experiences` into main timeline nodes, each carrying a
+// `concurrents` array of entries whose `concurrentWith` points at it (e.g.
+// a degree studied part-time alongside a job). Entries with no match for
+// their `concurrentWith` id are kept as their own primary node, so a typo
+// or removed id never silently drops a timeline entry.
+export function groupExperiences(items) {
+  const byId = new Map(items.map((item) => [item.id, item]));
+  const primaries = items.filter(
+    (item) => !item.concurrentWith || !byId.has(item.concurrentWith),
+  );
+  return primaries.map((item) => ({
+    ...item,
+    concurrents: items.filter((other) => other.concurrentWith === item.id),
+  }));
+}
+
 // Professional Projects
 export const professionalProjects = [
   {
